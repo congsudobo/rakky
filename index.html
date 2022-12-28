@@ -34,13 +34,32 @@
   <link rel="manifest" href="manifest.json">
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '3205482656';
+    var serviceWorkerVersion = '3295151617';
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+<style>
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    /* Default Axis is X*/
+    justify-content: center;
+    /* Main Axis */
+    align-items: center;
+    /* Cross Axis */
+  }
+
+  .indicator {
+    width: 10vw;
+  }
+</style>
 
 <body>
+  <div id="loading_indicator" class="container">
+    <img class="indicator" src="./assets/loading.gif" />
+  </div>
   <script>
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
@@ -54,6 +73,15 @@
         return appRunner.runApp();
       });
     });
+    window.onload = function () {
+      setTimeout(function () {
+        var loadingIndicator = document.getElementById("loading_indicator");
+        if (loadingIndicator) {
+          loadingIndicator.remove();
+        }
+      }, 10000);
+    };
+
   </script>
 </body>
 
